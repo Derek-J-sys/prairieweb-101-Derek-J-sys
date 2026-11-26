@@ -1,0 +1,117 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <title>Explore Alberta Trails</title>
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <header>
+      <h1>
+        Explore Alberta Trails<img
+          src="tree-solid-full.svg"
+          alt="Tree"
+          style="width: 50px; height: 50px"
+        />
+      </h1>
+      <nav aria-label="Navigation Bar">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#trails">Trails</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact us">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="about">
+        <h2>About</h2>
+      </section>
+      <section id="trails">
+        <h2>Trails</h2>
+        <div
+          id="googleMap"
+          style="width: 80%; height: 400px"
+          loading="lazy"
+        ></div>
+        <!--Map Script-->
+        <script>
+          function myMap() {
+            var mapProp = {
+              center: new google.maps.LatLng(51.0447, -114.0719),
+              zoom: 10,
+            };
+            var map = new google.maps.Map(
+              document.getElementById("googleMap"),
+              mapProp,
+            );
+          }
+        </script>
+        <p id="Temperature">test</p>
+        <!--WeatherData Script-->
+        <script>
+          function Weather() {
+            const temperature = weatherData.getCurrentTemperature();
+            const cloudcover = weatherData.getCloudCover();
+            document.getElementById("Temperature").innerText = "temperature";
+          }
+        </script>
+      </section>
+      <section id="faq">
+        <h2>FAQ</h2>
+      </section>
+      <section id="contact us">
+        <h3>Contact Us</h3>
+        <form name="Input" id="Input">
+          <fieldset>
+            <legend>Enter your Information Here!</legend>
+
+            <!--Name Input-->
+            <label for="name">Name:</label><br />
+            <input
+              type="text"
+              id="name"
+              name="name"
+              aria-errormessage="nameWarning"
+            /><br />
+            <div id="nameWarning" class="errormessage" aria-live="polite">
+              <p>Name cannot be empty</p>
+            </div>
+
+            <!--Email Input-->
+            <label for="email">Email:</label><br />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              aria-errormessage="emailWarning"
+            /><br />
+            <div id="emailWarning" class="errormessage" aria-live="polite">
+              <p>Email not valid</p>
+            </div>
+
+            <!--Trail Length Input-->
+            <label for="traillength">Choose Trail Length:</label>
+            <select id="traillength" name="traillength">
+              <option value="short">Short</option>
+              <option value="medium">Medium</option>
+              <option value="long">Long</option>
+            </select>
+            <br />
+
+            <!--Message Input-->
+            <label for="message">Enter any messages here! </label><br />
+            <textarea id="message" name="message"></textarea><br />
+            <input type="submit" value="Submit" id="submit" />
+          </fieldset>
+        </form>
+      </section>
+    </main>
+    <script type="module" src="InfoSubmit.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbHBGYFT3JUAu6aGEFXN5FBGtinbTqSp8&callback=myMap"></script>
+  </body>
+  <footer>
+    <p>&copy; 2026 Explore Alberta Trails</p>
+  </footer>
+</html>
